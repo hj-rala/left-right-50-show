@@ -1,0 +1,57 @@
+<div class="mspWrap" id="sector1">
+		<div class="center">
+			<div class="leftSet">
+				<div class="txt" data-in-effect="fadeIn">
+					<p class="title">title1</p>
+					<p class="big">title2</p>
+					<p class="conT">
+						text
+					</p>
+				</div>
+				<div class="more" data-in-effect="fadeIn"><a href="javascript:;">회원 혜택 자세히 보기<span class="plus"><img src="../images/icon/ico_re_plus_white.png" alt="더보기" /></span></a></div>
+			</div>
+		</div>
+		<div class="rightSet">
+			<img src="../images/img/img_re_main_membership.jpg" alt="" class="on" />
+		</div>
+	</div>
+  
+  
+  
+  css
+  /* membership */
+.mspWrap {opacity:0;width:100%;position:relative;background:#183029;margin-bottom:160px;overflow:hidden;z-index:10;height:760px;}
+.mspWrap:after {content:"";display:block;clear:both;}
+.mspWrap .center {margin:0 auto;max-width:1290px;}
+.mspWrap .leftSet {position:relative;width:50%;height:760px;}
+.mspWrap .leftSet .txt {opacity:0;padding-top:50px;z-index:10;}
+.mspWrap .leftSet .txt .title {padding-top:192px;font-size:32px;color:#537c70;font-weight:600;line-height:1.2;font-family:'montserrat';letter-spacing:0.3em;}
+.mspWrap .leftSet .txt .big {padding-top:66px;font-size:40px;color:#fff;font-weight:600;line-height:1.2;font-family:'Noto Sans KR';letter-spacing:-0.03em;}
+.mspWrap .leftSet .txt .conT {padding-top:23px;font-size:16px;color:#fff;font-weight:300;line-height:2.2;font-family:'Noto Sans KR';letter-spacing:0;}
+.mspWrap .leftSet .more {opacity:0;z-index:10;position:absolute;bottom:0;right:0;display:inline-block;width:270px;height:70px;line-height:70px;vertical-align:middle;text-align:center;background:#0b1915;}
+.mspWrap .leftSet .more a {display:block;font-size:17px;color:#fff;font-weight:600;vertical-align:middle;line-height:70px;letter-spacing:-0.05em;font-family:'Noto Sans KR';}
+.mspWrap .leftSet .more .plus {display:inline-block;margin-left:28px;}
+.mspWrap .rightSet {position:absolute;left:50%;top:0;}
+.mspWrap .rightSet img {-webkit-transform:scale(1.5) translateY(0%); -moz-transform:scale(1.5) translateY(0%); -ms-transform:scale(1.5) translateY(0%); -o-transform:scale(1.5) translateY(0%); transform:scale(1.5) translateY(0%);}
+
+
+js
+//membership
+	var m1 = function(b){
+		$('#'+b+'').animate({'opacity':'1'},300);		
+		$('.rightSet img').transition({opacity:1,scale:1,complete:function(){ 
+			$('.leftSet .txt').animate({'padding-top':'0','opacity':'1'},800,'easeOutSine');
+			$('.more').animate({'opacity':'1'},600);
+		}},1000,'cubic-bezier(.12,.20,.8,-0.24)');
+	}
+	$('div[id^=sector]').waypoint(function() {
+		var sectorNum = $(this).attr('id');
+		var depNum = parseInt(sectorNum.substr(6,7));
+		switch (depNum) {
+			case 1 :
+				m1(sectorNum);
+			break;
+			default :				
+			break;
+		}
+	}, { offset: '70%' });
